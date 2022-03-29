@@ -13,7 +13,33 @@
     <title>Green Recipes</title>
 </head>
 <body>
-
+    <header>
+        <!--Top nav-->
+        <nav class="nav-extended text-shadow green darken-1">
+            <div class="nav-wrapper">
+              <a href="{{ url_for('get_categories') }}" class="brand-logo">Green Recipes</a>
+              <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
+              <ul class="right hide-on-med-and-down">
+                <li><a href="{{ url_for('get_categories') }}">All Recipes</a></li>
+                <li><a href="#"> My Recipes</a></li>
+                <li><a href="#">Add Recipes</a></li>
+                <li><a href="#">Log In</a></li>
+                <li><a href="#">Log Out</a></li>
+                <li><a href="#">Sign Up</a></li>
+              </ul>
+            </div>
+        </nav>
+        <!--Mobile sidenav-->
+        <ul class="sidenav" id="mobile-demo">
+            <li><h4 class="center-align text-shadow green darken-1">Green Recipes</h4></li>
+            <li><a href="{{ url_for('get_categories') }}">All Recipes</a></li>
+            <li><a href="#"> My Recipes</a></li>
+            <li><a href="#">Add Recipes</a></li>
+            <li><a href="#">Log In</a></li>
+            <li><a href="#">Log Out</a></li>
+            <li><a href="#">Sign Up</a></li>
+         </ul>
+    </header>
     <h1>Part of test</h1>
     {% block content %}
     {% endblock %}
