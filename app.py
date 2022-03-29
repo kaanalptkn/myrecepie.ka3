@@ -39,6 +39,40 @@ def get_categories():
                             categories=categories, 
                             recipes=recipes)
 
+
+@app.route("/signup", methods=["GET", "POST"])
+def signup():
+    """
+    This function for user to register on
+    website and they could use more options
+    such as add recipie, delete, edit
+    """
+    if request.method == "POST":
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("usernme").lower()}
+        )
+
+        if existing_user:
+            flash("Username already exist, please try something else")
+            return render_template(url_for("signup"))
+
+        register = {
+            register ["username"]: request.form.get("username").lower(),
+            register ["email"] : request.form.get("email").lower(),
+            register ["password"] : generate_password_hash(request.form.get("password")),
+            register ["password_reconfirm"]: check_password_hash(request.form.get("password_reconfirm"), register ["password"])
+        }
+
+        mongo.db.users.insert_one(register)
+
+        session["user"] = request.form.get("username").lower(),
+        flash("You have successfully signed up")
+        return redirect(url_for("get_categories"))
+
+    return render_template("signup.html")
+
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

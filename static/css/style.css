@@ -1,3 +1,7 @@
 .text-shadow {
     text-shadow: 3px 3px 3px rgba(133, 118, 118, 0.5);
 }
+
+.signup {
+    text-align: center;
+}
