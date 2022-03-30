@@ -5,3 +5,7 @@
 .signup {
     text-align: center;
 }
+
+.flashes h4 {
+    line-height: 2;
+}
