@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block content %}
+
+   
+        <h3>Add Recipes</h3>
+        
+
+    <div class="row">
+       
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_recipe') }}">
+            <div class="card-panel">
+                <div class="row">
+                    <!--Recipe Name-->
+                    <div class="input-field col s12">
+                        <input  id="recipe_name" name="recipe_name" type="text" minlength="5" 
+                        maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                        <label for="first_name">Recipe Name</label>
+                    </div>
+                </div>
+                <!--Categorysection-->
+               <div class="row">
+                <div class="input-field col s12 m6">
+                    <select name="category_name" id="category_name" class="validate" required>
+                        <option value="">Select Cuisine</option>
+                        <option value="{{ category.category_name }}">{{ category.category_name }}></option>
+                    </select>
+                    <label for="category_name">Cuisine</label>
+                </div>  
+           </div>
+                <!--Cusine and image section-->
+               <div class="row">
+                    <div class="input-field col s12 m6">
+                        <select name="cuisine_name" id="cuisine_name" required>
+                            <option value="">Select Cuisine</option>
+                            <option value="{{ cuisine.cuisine_name }}">{{ cuisine.cuisine_name }}></option>
+                        </select>
+                        <label for="cuisine_name">Cuisine</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input id="image_url" name="image_url" type="text" class="validate" required>
+                        <label for="image_url">Image Url</label>
+                    </div>
+               </div>
+               <!--Allergens section-->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <h4><strong>Allergens</strong></h4>
+                        <div>
+                        <label>
+                            <input  type="checkbox"  name="{{ allergen.allergen_name }}" class="filled-in" required>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="ingredients">
+                        <h4><strong>Allergens</strong></h4>
+                        <div class="ingredient">
+                           <input  id="quantity" type="text"  name="quantity" class="validate" required>
+                           <label for="quantity">Quantity</label>
+                        </div>
+                        <div class="ingredient">
+                            <select name="ingredient_list" id="ingredient_list" class="ingredient_list">
+                                <option value="">Select Ingredient</option>
+                                <option value="{{ingredient.ingredient_name"}}>{{ingredient.ingredient_name}}</option>
+                            </select>
+                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <div>
+                            <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+                            <label for="add">Add</label>
+                        </div>
+                        <div>
+                            <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+                            <label for="remove">Remove</label>
+                        </div>
+                    </div>
+                </div>
+                <!--Instruction section-->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <h4><strong>Instruction</strong></h4>
+                        <div>
+                            <label for="recipe_instructions"></label>
+                            <input type="text" name="recipe_instructions" id="recipe_instructions" class="validate">
+                            <a href="#" role="button"><i class="fas fa-plus right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <div>
+                            <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+                            <label for="password">Add</label>
+                        </div>
+                        <div>
+                            <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+                            <label for="password">Remove</label>
+                        </div>
+                    </div>
+                </div>
+            
+                <button type="submit" class="col s12 btn-large green darken-1 text-shadow">Submit <i class="fas fa-sign-in-alt"></i>
+                </button>
+                <a href="{{ url_for('get_categories') }}" class="col s12 btn-large green darken-1 text-shadow">Cancel</a>
+               
+            </div>
+        
+        </form>
+    </div>
+{% endblock %}

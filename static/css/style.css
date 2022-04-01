@@ -9,3 +9,11 @@
 .flashes h4 {
     line-height: 2;
 }
+
+body {
+    background-image: url("../assets/img/background\ picture.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}

@@ -81,7 +81,10 @@ def login():
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
                     session["user"] = request.form.get("username").lower()
-                    flash("Welcome, {}".fornat(request.form.get("usernme")))
+                    flash("Welcome, {}".format(
+                        request.form.get("usernme")))
+                    return redirect(url_for(
+                        "my_recipes", username=session["user"]))
             else:
                 #invaild password match
                 flash("Incorrect Username and/or Password")
@@ -91,8 +94,53 @@ def login():
             # username doesn't exist
             flash("Incorrect Username and/or Password")
             return redirect("login")
-            
+
     return render_template("login.html")
+
+
+@app.route("/my_recipes/<username>", methods=["GET", "POST"])
+def my_recipes(username):
+    """
+    This function for user's username from db
+    """
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+
+    if session["user"]:
+        return render_template("my_recipes.html", username=username)
+    
+    return redirect(url_for("login"))
+
+
+
+@app.route("/logout")
+def logout():
+    flash("You have been logged out")
+    session.pop("user")
+    return redirect("login")
+
+@app.route("/add_recipe", methods=["GET", "POST"])
+def add_recipe():
+    """
+    Adding new recipe function
+    """
+    if not session.get("user"):
+        flash("You must be logged in to create new recipe")
+        return redirect("login")
+
+    if request.method == "POST":
+        recipe = {
+            "recipe_name" : request.form.get("recipe_name"),
+            "category_name" : request.form.get("category_name"),
+            "cuisine_name" : request.form.get("cuisine_name"),
+            "image_url" : request.form.get("image_url") 
+        }
+
+        mongo.db.recipes.insert_one(recipe)
+        flash("Recipe succesfully created!")
+        return redirect(url_for("get_categories"))
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template("add_recipe.html", categories = categories)
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
