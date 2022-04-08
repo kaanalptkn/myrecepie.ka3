@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container col s12 m10 offset-m1 green lighten-4 content-container mt-40" id="recipe-search">
+   <div class="row">
+        <div class="col s12 m6">
+            <header class="header-text center-align black-text text-darken-4">
+                <h3><strong>{{ recipe.recipe_name }}</strong></h3>
+                <h5 class="black-text text-darken-1"><em>{{ recipe.cuisine_name }}</em></h5>
+                <h5 class="black-text text-darken-1"><em>{{ recipe.category_name }}</em></h5>
+                <h5 class="black-text text-darken-1"><em>Allergens: {{ recipe.allergen_name }}</em></h5>
+                <p class="grey-text author-text">By: <span class="grey-text text-darken-3">{{ recipe.created_by }}</span></p>
+            </header>
+        </div>
+        <div class="col s12 m4">
+            <div class="card mt-20">
+                <div class="card-image">
+                    <img src="{{ recipe.image_url }}" alt="{{ recipe.recipe_name }}">
+                </div>
+            </div>
+        </div>
+        
+        <div class="row lrg-paragraph-txt grey-text text-darken-4">
+            <div class="col s12 m5 l4">
+                <h5 class="ml-20">Ingredients</h5>
+                <ul>
+                    {% for ingredient in recipe.ingredients-input %}
+                    <li>
+                        {{- ingredient -}} 
+                    </li>
+                    {% endfor %}
+            </div>
+            <div class="col s12 m7 l8">
+                <h5 class="ml-20">Instruction</h5>
+                <ol>
+                    {% for step in recipe.instruction-input %}
+                    <li>
+                        {{- step -}}
+                    </li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+        <div class="center-align mb-20 mt-40">
+            <a href="{{ url_for('get_categories') }}" class="waves-effect waves-light btn-small darken-3">Back</a>
+            {% if user == recipe.created_by %}
+                    <a href="/edit_recipe/{{ recipe._id }}" class="waves-effect waves-light green lighten-2 btn-small m-4">edit</a>
+                    <a href="#warning" data-target="warning-{{ recipe._id }}" class="waves-effect waves-light red lighten-2 btn-small m-4">delete</a>
+                </div>
+                <div id="warning-{{ recipe._id }}" class="modal">
+                    <div class="modal-content">
+                        <h4>Delete Recipe</h4>
+                        <p>Are you sure you want to delete this recipe?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect waves-light btn-small">Back</a>
+                        <a href="/delete_recipe/{{ recipe._id }}" class="waves-effect waves-light btn-small red lighten-2">Yes, Delete</a>
+                    </div>
+                </div>
+            {% endif %}
+   </div>
+</div> 
+   
+    
+{% endblock %}

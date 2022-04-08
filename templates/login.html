@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
-        <h3 class="center-align">Log In</h3>
-       
+    <header class="signup">
+        <h3>Welcome to Green Recipes</h3>
+        <p><strong>Sign up for create own recipes, save, edit, delete</strong></p>
+    </header>
 
+    <h3 class="center-align">Log In</h3>
     <div class="row">
         <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
             <div class="card-panel">

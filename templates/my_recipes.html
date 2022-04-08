@@ -1,18 +1,58 @@
 {% extends "base.html" %}
 {% block content %}
 
-    
-
+<div class="container">
     <div class="row">
         <div class="col s12 m8 offset-m2">
             <div class="card-panel created-recipes">
-                <h3 class="center-align">
-                    <i class="fas fa-folder prefix"> {{ username }}'s Recipes</i>
-                </h3>
+                <h2 class="center-align">
+                    <i class="fas fa-book prefix"></i> {{ username }}'s recipes 
+                </h2>
             </div>
         </div>
     </div>
-    
-   
+</div>
+<div class="row center-align background-decoration">
+    {% for recipe in recipes %}
+    <div class="col s12 m6 l4 offset-m1">
+        <div class="card large">
+            <div class="card-image">
+                {% if recipe.image_url|length %}
+                <img src="{{ recipe.image_url }}" class="activator" alt="">
+                {% else %}
+                <img src="../static/images/logo.png" alt="">
+                {% endif %}
+            </div>
+            <div class="card-content">
+                <h5 class="">{{ recipe.recipe_name.capitalize() }}</h5>
+                <p class="card-title">{{ recipe.category_name }}</p>
+                <div class="row">
+                    <a class="btn halfway-fab waves-effect waves-light red right"><i class="far fa-thumbs-up"></i></a>
+                </div>
+                <div class="row">
+                    <a href="{{ url_for('recipe', recipe_id=recipe._id) }}">Full recipe </a>
+                </div>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">{{ recipe.recipe_name.capitalize() }}<i
+                        class="far fa-times-circle right"></i></span>
+                <ul>
+                    {% for ingredient in recipe.ingredients %}
+                    <li>
+                        {{- ingredient -}} {{ ingredient[1:] }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% if session.user|lower == recipe.created_by|lower %}
+            <div class="row">
+                <a href="{{ url_for('edit_recipes', recipe_id=recipe._id) }}" class="btn-small green accent-4">Edit</a>
+                <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}" class="btn-small red accent-4">Delete</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div> 
 
 {% endblock %}

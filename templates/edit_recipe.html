@@ -2,18 +2,18 @@
 {% block content %}
 
    
-    <h3>Add Recipes</h3>
+    <h3>Edit Recipes</h3>
         
 
     <div class="container col s12 m10 offset-m1 black lighten-3 content-container" id="login-form">
         <div class="row">
        
-            <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_recipe') }}">
+            <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_recipes', recipe_id=recipe._id) }}">
                 <div class="card-panel">
                     <div class="row">
                         <!--Recipe Name-->
                         <div class="input-field col s12">
-                            <input  id="recipe_name" name="recipe_name" type="text" class="validate" required>
+                            <input  id="recipe_name" name="recipe_name" type="text" class="validate" value="{{ recipe.recipe_name }}" required>
                             <label for="recipe_name">Recipe Name</label>
                         </div>
                     </div>
@@ -21,18 +21,26 @@
                    <div class="row">
                         <div class="input-field col s12 m6">
                             <select name="category_name" id="category_name" class="validate" required>
-                                <option value="">Select Category</option>
+                                <option value="" disabled>Select Category</option>
                                 {% for category in categories %}
-                                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                                    {% if category.category_name == recipe.category_name %}
+                                        <option value="{{ category.category_name }}" selected>{{ category.category_name }}</option>
+                                    {% else %}
+                                        <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                                    {% endif %}
                                 {% endfor %}
                             </select>
                             <label for="category_name">Category</label>
                         </div> 
                         <div class="input-field col s12 m6">
                             <select name="cuisine_name" id="cuisine_name" required>
-                                <option value="">Select Cuisine</option>
+                                <option value="" disabled>Select Cuisine</option>
                                 {% for cuisine in cuisines %}
-                                    <option value="{{ cuisine.cuisine_name }}">{{ cuisine.cuisine_name }}</option>
+                                    {% if cuisine.cuisine_name == recipe.cuisine_name %}
+                                        <option value="{{ cuisine.cuisine_name }}" selected>{{ cuisine.cuisine_name }}</option>
+                                    {% else %}
+                                        <option value="{{ cuisine.cuisine_name }}">{{ cuisine.cuisine_name }}</option>
+                                    {% endif %}
                                 {% endfor %}
                             </select>
                             <label for="cuisine_name">Cuisine</label>
@@ -42,25 +50,30 @@
                    <div class="row">
                         
                         <div class="input-field col s12 m6">
-                            <input id="image_url" name="image_url" type="text" class="validate" required>
+                            <input id="image_url" name="image_url" type="text" class="validate" value="{{ recipe.image_url }}">
                             <label for="image_url">Image Url</label>
+                            <span>Add image if you have some available or leave blank</span>
                         </div>
                    </div>
                    <!--Allergens section-->
                    <div class="row">
-                        <div class="allergens mb-20">
-                            <h4 class="mb-10 center-align black-text text-darken-4"><strong>Allergens</strong></h4>
-                            {% for allergen in allergens %}
-                                <div class="input-field col s6 m3 mt-0 mb-0 height-40">
-                                    <p>
-                                    <label>
+                    <div class="allergens mb-20">
+                        <h4 class="mb-10 center-align teal-text text-darken-4"><strong>Allergens</strong></h4>
+                        {% for allergen in allergens %}
+                            <div class="input-field col s6 m3 mt-0 mb-0 height-40">
+                                <p>
+                                <label>
+                                    {% if allergen.allergen_name == recipe.allergen_name %}
+                                        <input type="checkbox" class="filled-in" name="{{ allergen.allergen_name }}" checked="checked"/>
+                                    {% else %}
                                         <input type="checkbox" class="filled-in" name="{{ allergen.allergen_name }}"/>
-                                        <span>{{ allergen.allergen_name }}</span>
-                                    </label>
-                                    </p>
-                                </div>
-                            {% endfor %}
-                        </div>
+                                    {% endif %}
+                                    <span>{{ allergen.allergen_name }}</span>
+                                </label>
+                                </p>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
                 
                 <hr class="mb-40">
@@ -69,6 +82,8 @@
                         <div class="row">
                             <div class="ingredients center-align">
                                 <h4><strong>Ingredients</strong></h4>
+
+                                {% for ingredient in recipe.ingedients %}
                                 <div class="row add-ing" id="add-ing">
                                     <div class="container">
                                         <div class="ingredients-input" id="ingredients-input">
@@ -89,6 +104,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -97,12 +113,16 @@
                         <div class="row">
                             <div class="ingredients center-align">
                                 <h4><strong>Instruction</strong></h4>
-                                <div class="row">
-                                    <div class="container">
-                                        <div class="col l12 instruction-input step" id="instruction-input">
-                                            <input  type="text"  name="instruction-input[]" class="instruction-input" required>
-                                            <label for="instruction-input[]">Instruction</label>
-                                        </div>
+                                
+                                <div class="container">
+                                    <div class="row">
+                                        <ol id="steps-list" class="mt-10">
+                                            {% for step in recipe.method %}
+                                            <li class="step">
+                                                <input name="step-{{ loop.index }}" type="text" class="validate" value="{{ step }}" autocomplete="off" required>
+                                            </li>
+                                            {% endfor %}   
+                                        </ol>
                                     </div>
                                     <div class="input-field col s12">
                                         <div class="col l6">
@@ -119,7 +139,7 @@
                         </div>
                     </div>
                 
-                    <button class="btn waves-effect waves-light green  submit-btn" type="submit" name="action">Submit <i class="fas fa-sign-in-alt"></i>
+                    <button class="btn waves-effect waves-light green  submit-btn" type="submit" name="action">Save Changes<i class="fas fa-sign-in-alt"></i>
                     </button>
                     <a href="{{ url_for('get_categories') }}" class="waves-effect waves-light btn red submit-btn mt-20">Cancel</a>
                    
