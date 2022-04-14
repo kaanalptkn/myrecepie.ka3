@@ -124,17 +124,23 @@ def my_recipes(username):
         flash("You were not supposed to be here!")
         return redirect(url_for("get_categories"))
     return render_template(
-                        "my_recipes.html", 
-                        username=username, 
-                        recipes=recipes)
+            "my_recipes.html", 
+            username=username, 
+            recipes=recipes)
 
 @app.route("/recipe/<recipe_id>")
 def recipe(recipe_id):
     """
     It displays full recipe
     """
+        
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    return render_template("recipe.html", recipe=recipe)
+    categories = mongo.db.categories.find().sort("category_name")
+    cuisines = mongo.db.cuisine.find().sort("cuisine_name", 1)
+    allergens = list(mongo.db.allergen.find().sort("allergen_name", 1))
+
+    return render_template("recipe.html", recipe=recipe, categories=categories, cuisine=cuisines, allergen=allergens)
+    
 
 
 @app.route("/logout")
@@ -154,15 +160,17 @@ def add_recipe():
 
     if request.method == "POST":
         recipe = {
-            "recipe_name" : request.form.get("recipe_name"),
-            "category_name" : request.form.get("category_name"),
-            "created_by" : session["user"],
-            "cuisine_name" : request.form.get("cuisine_name"),
-            "image_url" : request.form.get("image_url"),
-            "allergen_name" : request.form.getlist("allergen_name"),
-            "ingredient_name": request.form.getlist("ingredient_name")
+            "recipe_name": request.form.get("recipe_name"),
+            "category_name": request.form.get("category_name"),
+            "created_by": session["user"],
+            "cuisine_name": request.form.get("cuisine_name"),
+            "image_url": request.form.get("image_url"),
+            "allergens": request.form.getlist("allergens"),
+            "ingredients": request.form.getlist("ingredients"),
+            "instructions": request.form.getlist("instructions")
             
         }
+        
 
         mongo.db.recipes.insert_one(recipe)
         flash("Recipe succesfully created!")
@@ -170,19 +178,17 @@ def add_recipe():
     recipes = mongo.db.recipes.find().sort("recipe_name")
     categories = mongo.db.categories.find().sort("category_name")
     cuisines = mongo.db.cuisine.find().sort("cuisine_name", 1)
-    allergens = mongo.db.allergen.find().sort("allergen_name", 1)
-    ingredients = mongo.db.ingredient.find().sort("ingredient_name")
+    allergens = list(mongo.db.allergen.find().sort("allergen_name", 1))
 
     return render_template(
         "add_recipes.html", 
         recipes=recipes,
         categories=categories,
         cuisines=cuisines, 
-        allergens=allergens, 
-        ingredients=ingredients)
+        allergens=allergens)
 
 @app.route("/edit_recipes/<recipe_id>", methods=["GET", "POST"])
-def edit_recipes(recipe_id):
+def edit_recipe(recipe_id):
     """
     This function for user editing own recipes
     """
@@ -190,17 +196,18 @@ def edit_recipes(recipe_id):
         user = session["user"]
         recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
         if recipe["created_by"] == user:
-            if request.method == POST:
-                update = {
-                "recipe_name" : request.form.get("recipe_name"),
-                "category_name" : request.form.get("category_name"),
-                "created_by" : session["user"],
-                "cuisine_name" : request.form.get("cuisine_name"),
-                "image_url" : request.form.get("image_url"),
-                "allergen_name" : request.form.get("allergen_name"),
-                "ingredient_name": request.form.getlist("ingredient_name")
-                }
-                mongo.db.recipes.update(
+            if request.method == "POST":
+                update = {'$set': { 
+                    "recipe_name": request.form.get("recipe_name"),
+                    "category_name": request.form.get("category_name"),
+                    "created_by": session["user"],
+                    "cuisine_name": request.form.get("cuisine_name"),
+                    "image_url": request.form.get("image_url"),
+                    "allergens": request.form.getlist("allergens"),
+                    "ingredients": request.form.getlist("ingredients"),
+                    "instructions": request.form.getlist("instructions")
+                }}
+                mongo.db.recipes.update_one(
                     {"_id": ObjectId(recipe_id)}, update)
                 flash("Recipe Updated Succesfully")
                 return redirect(url_for("get_categories"))
@@ -208,18 +215,17 @@ def edit_recipes(recipe_id):
         else:
             flash("You need to login first for editing")
             return redirect(url_for("login.html"))
+
         categories = mongo.db.categories.find().sort("category_name")
         cuisines = mongo.db.cuisine.find().sort("cuisine_name", 1)
         allergens = mongo.db.allergen.find().sort("allergen_name", 1)
-        ingredients = mongo.db.ingredient.find().sort("ingredient_name")
 
         return render_template(
             "edit_recipe.html",
             recipe=recipe,
             categories=categories,
             cuisines=cuisines, 
-            allergens=allergens, 
-            ingredients=ingredients )
+            allergens=allergens)
         
 @app.route("/delete_recipe/<recipe_id>")
 def delete_recipe(recipe_id):
@@ -227,10 +233,10 @@ def delete_recipe(recipe_id):
     This function for remove recipe from database
     """
     if "user" in session:
-        user == session["user"]
-        recipe = mongo.db.recipes.find_one({"_id": ObjectedId(recipe_id)})
+        user = session["user"]
+        recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
         if recipe["created_by"] == user:
-            mongo.db.recipes.delete({"_id": ObjectId(recipe_id)})
+            mongo.db.recipes.delete_one({"_id": ObjectId(recipe_id)})
             flash("Recipe Succesfully Removed")
             return redirect(url_for("get_categories"))
         else:

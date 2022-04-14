@@ -47,23 +47,23 @@
                         </div>
                    </div>
                    <!--Allergens section-->
-                   <div class="row">
+                    <div class="row">
                         <div class="allergens mb-20">
                             <h4 class="mb-10 center-align black-text text-darken-4"><strong>Allergens</strong></h4>
                             {% for allergen in allergens %}
-                                <div class="input-field col s6 m3 mt-0 mb-0 height-40">
+                                <div class="input-field col s6 m3 mt-0 mb-0 height-40 allergen">
                                     <p>
-                                    <label>
-                                        <input type="checkbox" class="filled-in" name="{{ allergen.allergen_name }}"/>
-                                        <span>{{ allergen.allergen_name }}</span>
+                                    <label for="{{ allergen.allergen_name }}">
+                                        <input type="checkbox" class="filled-in" id="{{ allergen.allergen_name }}"  name="{{ allergen.allergen_name }}"/>
+                                        <span class="{{ allergen.allergen_name }}">{{ allergen.allergen_name }}</span>
                                     </label>
                                     </p>
                                 </div>
                             {% endfor %}
                         </div>
-                </div>
+                    </div>
                 
-                <hr class="mb-40">
+                   <hr class="mb-40">
                     <!--Ingredients section-->
                     <div class="row" >
                         <div class="row">
@@ -71,10 +71,10 @@
                                 <h4><strong>Ingredients</strong></h4>
                                 <div class="row add-ing" id="add-ing">
                                     <div class="container">
-                                        <div class="ingredients-input" id="ingredients-input">
-                                            <div class="quantity_ingredients col l12">
-                                                <input  id="quantity_ingredients" type="text"  name="ingredients-input[]" class="ingredients-input" required>
-                                                <label for="quantity_ingredients">Quantity and Ingredients</label>
+                                        <div class="ingredients" id="ingredients">
+                                            <div class="ingredients  ingredinet col l12">
+                                                <input  id="ingredients" type="text"  name="ingredients" class="ingredients" required>
+                                                <label for="ingredients">Quantity and Ingredients</label>
                                             </div>
                                         </div>
                                     </div>
@@ -99,9 +99,9 @@
                                 <h4><strong>Instruction</strong></h4>
                                 <div class="row">
                                     <div class="container">
-                                        <div class="col l12 instruction-input step" id="instruction-input">
-                                            <input  type="text"  name="instruction-input[]" class="instruction-input" required>
-                                            <label for="instruction-input[]">Instruction</label>
+                                        <div class="col l12 instructions step" id="instructions">
+                                            <input id="instructions" type="text"  name="instructions" class="instructions" required>
+                                            <label for="instructions">Instruction</label>
                                         </div>
                                     </div>
                                     <div class="input-field col s12">

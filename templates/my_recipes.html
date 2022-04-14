@@ -36,17 +36,17 @@
             <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4">{{ recipe.recipe_name.capitalize() }}<i
                         class="far fa-times-circle right"></i></span>
-                <ul>
+                   <ul>
                     {% for ingredient in recipe.ingredients %}
                     <li>
-                        {{- ingredient -}} {{ ingredient[1:] }}
+                        {{ ingredient }}
                     </li>
-                    {% endfor %}
-                </ul>
+                {% endfor %}
+                   </ul>
             </div>
             {% if session.user|lower == recipe.created_by|lower %}
             <div class="row">
-                <a href="{{ url_for('edit_recipes', recipe_id=recipe._id) }}" class="btn-small green accent-4">Edit</a>
+                <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}" class="btn-small green accent-4">Edit</a>
                 <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}" class="btn-small red accent-4">Delete</a>
                 {% endif %}
             </div>

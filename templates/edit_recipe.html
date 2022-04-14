@@ -8,7 +8,7 @@
     <div class="container col s12 m10 offset-m1 black lighten-3 content-container" id="login-form">
         <div class="row">
        
-            <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_recipes', recipe_id=recipe._id) }}">
+            <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">
                 <div class="card-panel">
                     <div class="row">
                         <!--Recipe Name-->
@@ -58,86 +58,75 @@
                    <!--Allergens section-->
                    <div class="row">
                     <div class="allergens mb-20">
-                        <h4 class="mb-10 center-align teal-text text-darken-4"><strong>Allergens</strong></h4>
+                        <h4 class="mb-10 center-align black-text text-darken-4"><strong>Allergens</strong></h4>
                         {% for allergen in allergens %}
-                            <div class="input-field col s6 m3 mt-0 mb-0 height-40">
+                            <div class="input-field col s6 m3 mt-0 mb-0 height-40 allergen">
                                 <p>
-                                <label>
-                                    {% if allergen.allergen_name == recipe.allergen_name %}
-                                        <input type="checkbox" class="filled-in" name="{{ allergen.allergen_name }}" checked="checked"/>
-                                    {% else %}
-                                        <input type="checkbox" class="filled-in" name="{{ allergen.allergen_name }}"/>
-                                    {% endif %}
-                                    <span>{{ allergen.allergen_name }}</span>
+                                <label for="{{ allergen.allergen_name }}">
+                                    <input type="checkbox" class="filled-in" id="{{ allergen.allergen_name }}"  name="{{ allergen.allergen_name }}"/>
+                                    <span class="{{ allergen.allergen_name }}">{{ allergen.allergen_name }}</span>
                                 </label>
                                 </p>
                             </div>
                         {% endfor %}
                     </div>
                 </div>
-                
-                <hr class="mb-40">
-                    <!--Ingredients section-->
-                    <div class="row" >
-                        <div class="row">
-                            <div class="ingredients center-align">
-                                <h4><strong>Ingredients</strong></h4>
-
-                                {% for ingredient in recipe.ingedients %}
-                                <div class="row add-ing" id="add-ing">
-                                    <div class="container">
-                                        <div class="ingredients-input" id="ingredients-input">
-                                            <div class="quantity_ingredients col l12">
-                                                <input  id="quantity_ingredients" type="text"  name="ingredients-input[]" class="ingredients-input" required>
-                                                <label for="quantity_ingredients">Quantity and Ingredients</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="input-field col s12">
-                                        <div class="col l6">
-                                            <a class="btn-floating btn-small waves-effect waves-light green" id="add-btn-ing" name="add-btn-ing" class="add-btn-ing"><i class="fas fa-plus"></i></a>
-                                            <label for="add-btn-ing">Add</label>
-                                        </div>
-                                        <div class="col l6">
-                                            <a class="btn-floating btn-small waves-effect waves-light red btn-remove" id="btn-remove"><i class="fas fa-minus"></i></a>
-                                            <label for="remove">Remove</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                    <!--Instruction section-->
-                    <div class="row" >
-                        <div class="row">
-                            <div class="ingredients center-align">
-                                <h4><strong>Instruction</strong></h4>
-                                
+            
+               <hr class="mb-40">
+                <!--Ingredients section-->
+                <div class="row" >
+                    <div class="row">
+                        <div class="ingredients center-align">
+                            <h4><strong>Ingredients</strong></h4>
+                            <div class="row add-ing" id="add-ing">
                                 <div class="container">
-                                    <div class="row">
-                                        <ol id="steps-list" class="mt-10">
-                                            {% for step in recipe.method %}
-                                            <li class="step">
-                                                <input name="step-{{ loop.index }}" type="text" class="validate" value="{{ step }}" autocomplete="off" required>
-                                            </li>
-                                            {% endfor %}   
-                                        </ol>
+                                    <div class="ingredients" id="ingredients">
+                                        <div class="ingredients  ingredinet col l12">
+                                            <input  id="ingredients" type="text"  name="ingredients" class="ingredients" required>
+                                            <label for="ingredients">Quantity and Ingredients</label>
+                                        </div>
                                     </div>
-                                    <div class="input-field col s12">
-                                        <div class="col l6">
-                                            <a herf="#" class="btn-floating btn-small waves-effect waves-light green" id="add-btn-ins" name="add-btn-ins" class="add-btn-ins"><i class="fas fa-plus"></i></a>
-                                            <label for="add-btn-ins">Add</label>
-                                        </div>
-                                        <div class="col l6">
-                                            <a  herf="#" class="btn-floating btn-small waves-effect waves-light red btn-remove-ins" id="btn-remove-ins"><i class="fas fa-minus"></i></a>
-                                            <label for="remove">Remove</label>
-                                        </div>
+                                </div>
+                                <div class="input-field col s12">
+                                    <div class="col l6">
+                                        <a class="btn-floating btn-small waves-effect waves-light green" id="add-btn-ing" name="add-btn-ing" class="add-btn-ing"><i class="fas fa-plus"></i></a>
+                                        <label for="add-btn-ing">Add</label>
+                                    </div>
+                                    <div class="col l6">
+                                        <a class="btn-floating btn-small waves-effect waves-light red btn-remove" id="btn-remove"><i class="fas fa-minus"></i></a>
+                                        <label for="remove">Remove</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <!--Instruction section-->
+                <div class="row" >
+                    <div class="row">
+                        <div class="ingredients center-align">
+                            <h4><strong>Instruction</strong></h4>
+                            <div class="row">
+                                <div class="container">
+                                    <div class="col l12 instructions step" id="instructions">
+                                        <input id="instructions" type="text"  name="instructions" class="instructions" required>
+                                        <label for="instructions">Instruction</label>
+                                    </div>
+                                </div>
+                                <div class="input-field col s12">
+                                    <div class="col l6">
+                                        <a herf="#" class="btn-floating btn-small waves-effect waves-light green" id="add-btn-ins" name="add-btn-ins" class="add-btn-ins"><i class="fas fa-plus"></i></a>
+                                        <label for="add-btn-ins">Add</label>
+                                    </div>
+                                    <div class="col l6">
+                                        <a  herf="#" class="btn-floating btn-small waves-effect waves-light red btn-remove-ins" id="btn-remove-ins"><i class="fas fa-minus"></i></a>
+                                        <label for="remove">Remove</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
                     <button class="btn waves-effect waves-light green  submit-btn" type="submit" name="action">Save Changes<i class="fas fa-sign-in-alt"></i>
                     </button>
