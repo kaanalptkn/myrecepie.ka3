@@ -2,14 +2,14 @@
 {% block content %}
 
    
-    <h3>Add Recipes</h3>
+    <h3 class="center-align">Add Recipes</h3>
         
 
-    <div class="container col s12 m10 offset-m1 black lighten-3 content-container" id="login-form">
+    <div class="container col s12 m10 offset-m1 lighten-3 content-container" id="login-form">
         <div class="row">
        
             <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_recipe') }}">
-                <div class="card-panel">
+                <div class="card-panel add_recipe-background">
                     <div class="row">
                         <!--Recipe Name-->
                         <div class="input-field col s12">
@@ -52,11 +52,11 @@
                             <h4 class="mb-10 center-align black-text text-darken-4"><strong>Allergens</strong></h4>
                             {% for allergen in allergens %}
                                 <div class="input-field col s6 m3 mt-0 mb-0 height-40 allergen">
-                                    <p>
-                                    <label for="{{ allergen.allergen_name }}">
-                                        <input type="checkbox" class="filled-in" id="{{ allergen.allergen_name }}"  name="{{ allergen.allergen_name }}"/>
-                                        <span class="{{ allergen.allergen_name }}">{{ allergen.allergen_name }}</span>
-                                    </label>
+                                    <p> 
+                                        <label for="{{ allergen.allergen_name }}">
+                                            <input type="checkbox" class="filled-in" id="{{ allergen.allergen_name }}" name="{{ allergen.allergen_name }}">
+                                            <span>{{ allergen.allergen_name }}</span>
+                                        </label>
                                     </p>
                                 </div>
                             {% endfor %}
@@ -119,9 +119,9 @@
                         </div>
                     </div>
                 
-                    <button class="btn waves-effect waves-light green  submit-btn" type="submit" name="action">Submit <i class="fas fa-sign-in-alt"></i>
+                    <button class="btn waves-effect waves-light   submit-btn green lighten-2 button" type="submit" name="action">Submit <i class="fas fa-sign-in-alt"></i>
                     </button>
-                    <a href="{{ url_for('get_categories') }}" class="waves-effect waves-light btn red submit-btn mt-20">Cancel</a>
+                    <a href="{{ url_for('get_categories') }}" class="waves-effect waves-light black-text btn red lighten-1 button submit-btn mt-20">Cancel</a>
                    
                 </div>
             

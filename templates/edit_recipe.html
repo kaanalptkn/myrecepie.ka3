@@ -5,7 +5,7 @@
     <h3>Edit Recipes</h3>
         
 
-    <div class="container col s12 m10 offset-m1 black lighten-3 content-container" id="login-form">
+    <div class="container col s12 m10 offset-m1 lighten-3 content-container" id="login-form">
         <div class="row">
        
             <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">
@@ -128,9 +128,9 @@
                     </div>
                 </div>
                 
-                    <button class="btn waves-effect waves-light green  submit-btn" type="submit" name="action">Save Changes<i class="fas fa-sign-in-alt"></i>
+                    <button class="btn waves-effect waves-light green  submit-btn button" type="submit" name="action">Save Changes<i class="fas fa-sign-in-alt"></i>
                     </button>
-                    <a href="{{ url_for('get_categories') }}" class="waves-effect waves-light btn red submit-btn mt-20">Cancel</a>
+                    <a href="{{ url_for('get_categories') }}" class="waves-effect waves-light btn red submit-btn mt-20 button">Cancel</a>
                    
                 </div>
             

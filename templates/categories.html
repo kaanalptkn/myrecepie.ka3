@@ -5,35 +5,20 @@
 
 <div class="container col s12 m10 offset-m1 grey lighten-3 content-container">
     <div class="row">
-        <form action="{{ url_for('search') }}" method="POST" class="col s12">
+        <form action="{{ url_for('search') }}" method="POST" class="col s12 green lighten-4">
           <div class="row">
-                <div class="row valign-wrapper center-align col m6">
+                <div class="row valign-wrapper center-align col m12">
                     <div class="input-field col s12 m6">
                         <i class="fas fa-search prefix text-darken-3"></i>
                         <input type="text" name="query" id="query" minlength="2" class="validate">
                         <label for="query">Search Recipe</label>
                     </div>
-                    <div class="col s5 m4">
-                        <button class="btn waves-effect waves-light blue-grey submit-btn mt-20 " type="submit" id="recipe-search-btn">search</button>
+                    <div class="col s6 m4">
+                        <button class="btn waves-effect waves-light green lighten-2 submit-btn mt-20 button" type="submit" id="recipe-search-btn">search</button>
                     </div>
                 </div>
-                <div class=" row valign-wrapper col m6">
-                    <div class="input-field col s12" id="cuisine-select">
-                        <select id="cuisine-filter" name="cuisine_select">
-                            <option value="" disabled selected>Cuisine</option>
-                            {% for cuisine in cuisines %}
-                                <option type="text" name="query" id="query" value="{{ cuisine.cuisine_name }}">{{ cuisine.cuisine_name }}</option>
-                            {% endfor %}
-                        </select>
-                        <label for="query">Filter by Cuisine</label>
-                    </div>
-                    <div class="col s5 m2">
-                        <button class="btn waves-effect waves-light blue-grey submit-btn mt-20"  type="submit" id="cusine-filter-btn">filter</button>
-                    </div>
-                </div>
-                
-                <div class="col s7 m4">
-                    <a href="{{ url_for('get_categories') }}"  class=" blue-grey btn text-shadow">Reset</a>
+                <div class="col s6 m4">
+                    <a href="{{ url_for('get_categories') }}"  class=" green lighten-2 btn text-shadow button">Reset</a>
                 </div>
           </div>
         </form>
@@ -56,10 +41,10 @@
             </div>
             <div class="card-action">
                 <div class="row">
-                    <a href="{{ url_for('recipe', recipe_id=recipe._id) }}" class="waves-effect waves-light btn-small m-4">Full Recipe</a>
+                    <a href="{{ url_for('recipe', recipe_id=recipe._id) }}" class="waves-effect waves-light black-text btn-small m-4 button">Full Recipe</a>
                  {% if session.user|lower == recipe.created_by|lower %}
-                    <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}" class="btn-small green lighten-2 accent-4">Edit</a>
-                    <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}" class="btn-small  red lighten-1 accent-4">Delete</a>
+                    <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}" class="btn-small green lighten-2 accent-4 button">Edit</a>
+                    <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}" class="btn-small black-text red lighten-1 accent-4 button">Delete</a>
                 {% endif %}
                 </div>
                 
@@ -68,7 +53,7 @@
    </div>
 </div> 
 {% else %}
-    <h3 class="center-align white-text">No Result Found <i class="far fa-sad-cry"></i></h3>
+    <h3 class="center-align black-text">No Result Found <i class="far fa-sad-cry"></i></h3>
 {% endif %}
 
 {% endblock %}

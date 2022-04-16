@@ -1,5 +1,5 @@
 .text-shadow {
-    text-shadow: 3px 3px 3px rgba(133, 118, 118, 0.5);
+    text-shadow: 3px 3px 3px rgba(217, 211, 211, 0.5);
 }
 
 .signup {
@@ -16,4 +16,41 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-color: transparent;
+}
+
+nav ul a,
+nav .brand-logo,
+.page-footer,
+.fab {
+    color: rgb(59, 58, 58);
+}
+
+.green.lighten-2 {
+    color: black;
+}
+
+ul:not(.browser-default)>li {
+    display: initial;
+}
+
+#full_recipe {
+    margin: 20px;
+}
+
+.button {
+    border-radius: 15px;
+}
+
+.add_recipe-background {
+    background-color: whitesmoke;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.img {
+    height: 220px;
+    width: 220px;
 }

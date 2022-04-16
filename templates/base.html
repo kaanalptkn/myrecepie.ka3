@@ -15,7 +15,7 @@
 <body>
     <header>
         <!--Top nav-->
-        <nav class="nav-extended text-shadow blue-grey">
+        <nav class="nav-extended text-shadow green lighten-3">
             <div class="nav-wrapper">
               <a href="{{ url_for('get_categories') }}" class="brand-logo">Green Recipes</a>
               <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
@@ -53,7 +53,7 @@
             {% if messages %}
                 {% for message in messages %}
                     <div class="row flashes">
-                        <h4 class="blue-grey center-align">{{ message }}</h4>
+                        <h4 class="green lighten-4 center-align">{{ message }}</h4>
                     </div>
                 {% endfor %}
             {% endif %}
@@ -63,31 +63,34 @@
     
     {% block content %}
     {% endblock %}
-    <footer class="page-footer blue-grey">
-        <div class="container">
-          <div class="row">
-            <div class="col l6 s12">
-              <h5 class="white-text">Green Recipe</h5>
-              <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-            </div>
-            <div class="col l4 offset-l2 s12">
-              <h5 class="white-text">Links</h5>
-              <ul>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-              </ul>
-            </div>
+    <footer class="page-footer green lighten-4">
+      <div class="container">
+        <div class="row foot-wraper">
+          <div class="col l6 s12">
+            <h5><a class="black-text" href="{{ url_for('get_categories') }}">Green Recipe</a></h5>
+            <p>You can use rows and columns here to organize your footer content.</p>
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <ul class="black-text text-lighten-4">
+              <li><a href="https://www.facebook.com/" target=_blank><i class="fab fa-facebook-square"></i></a>
+              </li>
+              <li><a href="https://www.instagram.com/" target="_blank"><i
+                          class="fab fa-instagram-square"></i></a></li>
+              <li><a href="https://twitter.com/?lang=en" target="_blank"><i
+                          class="fab fa-twitter-square"></i></a></li>
+              <li><a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube-square"></i></a>
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="footer-copyright">
-          <div class="container">
-          © 2022 Copyright Text
-          <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-          </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container black-text text-lighten-4">
+        © 2022 Kaan Alptakin
+        <a class="black-text text-lighten-4 right" href="https://github.com/kaanalptkn?tab=repositories"><i class="fab fa-github"></i></a>
         </div>
-      </footer>
+      </div>
+    </footer>
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

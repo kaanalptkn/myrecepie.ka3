@@ -52,6 +52,7 @@ def search():
         recipes=recipes,
         cuisines=cuisines)
 
+
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     """
@@ -84,6 +85,7 @@ def signup():
 
     return render_template("signup.html")
 
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -93,13 +95,11 @@ def login():
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
-                flash("Welcome {}".format(
-                    request.form.get("usernme")))
+                flash("Welcome " + session["user"].format(request.form.get("usernme")))
                 return redirect(
-                    url_for("my_recipes",
-                    username=session["user"]))
+                    url_for("my_recipes", username=session["user"]))
             else:
-                #invaild password match
+                # invaild password match
                 flash("Incorrect Username and/or Password")
                 return redirect(url_for("login"))
 
@@ -107,7 +107,6 @@ def login():
             # username doesn't exist
             flash("Incorrect Username and/or Password")
             return redirect("login")
-
     return render_template("login.html")
 
 
@@ -124,30 +123,38 @@ def my_recipes(username):
         flash("You were not supposed to be here!")
         return redirect(url_for("get_categories"))
     return render_template(
-            "my_recipes.html", 
-            username=username, 
+            "my_recipes.html",       
+            username=username,   
             recipes=recipes)
+
+
+
+
 
 @app.route("/recipe/<recipe_id>")
 def recipe(recipe_id):
     """
     It displays full recipe
     """
-        
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     categories = mongo.db.categories.find().sort("category_name")
     cuisines = mongo.db.cuisine.find().sort("cuisine_name", 1)
-    allergens = list(mongo.db.allergen.find().sort("allergen_name", 1))
+    allergens = mongo.db.allergen.find().sort("allergen_name", 1)
 
-    return render_template("recipe.html", recipe=recipe, categories=categories, cuisine=cuisines, allergen=allergens)
+    return render_template(
+        "recipe.html",
+        recipe=recipe, 
+        categories=categories, 
+        cuisine=cuisines, 
+        allergens=allergens)
     
-
 
 @app.route("/logout")
 def logout():
     flash("You have been logged out")
     session.pop("user")
     return redirect("login")
+
 
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
@@ -171,14 +178,13 @@ def add_recipe():
             
         }
         
-
         mongo.db.recipes.insert_one(recipe)
         flash("Recipe succesfully created!")
         return redirect(url_for("get_categories"))
     recipes = mongo.db.recipes.find().sort("recipe_name")
     categories = mongo.db.categories.find().sort("category_name")
     cuisines = mongo.db.cuisine.find().sort("cuisine_name", 1)
-    allergens = list(mongo.db.allergen.find().sort("allergen_name", 1))
+    allergens = mongo.db.allergen.find().sort("allergen_name", 1)
 
     return render_template(
         "add_recipes.html", 
@@ -186,6 +192,7 @@ def add_recipe():
         categories=categories,
         cuisines=cuisines, 
         allergens=allergens)
+    
 
 @app.route("/edit_recipes/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
@@ -227,6 +234,7 @@ def edit_recipe(recipe_id):
             cuisines=cuisines, 
             allergens=allergens)
         
+
 @app.route("/delete_recipe/<recipe_id>")
 def delete_recipe(recipe_id):
     """

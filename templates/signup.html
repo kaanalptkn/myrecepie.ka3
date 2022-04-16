@@ -9,11 +9,11 @@
     <div class="row">
         <h4 class="center-align">Sign Up</h4>
         
-        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('signup') }}">
+        <form class="col s12 m8 offset-m2 green lighten-4" method="POST" action="{{ url_for('signup') }}">
             <div class="card-panel">
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="fas fa-user-plus prefix green-text text-darken-4"></i>
+                        <i class="fas fa-user-plus prefix green-text text-lighten-1"></i>
                         <input placeholder="Placeholder" id="username" name="username" type="text" minlength="5" 
                         maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
                         <label for="first_name">Username</label>
@@ -21,14 +21,14 @@
                 </div>
                <div class="row">
                     <div class="input-field col s12">
-                        <i class="fas fas fa-envelope-open prefix green-text text-darken-4"></i>
+                        <i class="fas fas fa-envelope-open prefix green-text text-lighten-1"></i>
                         <input id="email" name="email" type="email" class="validate" required>
                         <label for="email">Email</label>
                     </div>
                </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="fas fas fa-lock prefix green-text text-darken-4"></i>
+                        <i class="fas fas fa-lock prefix green-text text-lighten-1"></i>
                         <input id="password" type="password"  name="password" minlength="5" 
                         maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
                         <label for="password">Password</label>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="fas fas fa-lock prefix green-text text-darken-4"></i>
+                        <i class="fas fas fa-lock prefix green-text text-lighten-1"></i>
                         <input id="password_reconfirm" type="password"  name="password_reconfirm" minlength="5" 
                         maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
                         <label for="password">Re-Confirm Password</label>
@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <button type="submit" class="col s12 btn-large green darken-1 text-shadow">
+                    <button type="submit" class="col s12 btn green lighten-3">
                         Submit <i class="fas fa-sign-in-alt"></i>
                     </button>
                 </div>
