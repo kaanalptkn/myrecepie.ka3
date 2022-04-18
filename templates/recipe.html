@@ -9,7 +9,8 @@
                 <h3><strong>{{ recipe.recipe_name }}</strong></h3>
                 <h5 class="black-text text-darken-1"><em>{{ recipe.cuisine_name }}</em></h5>
                 <h5 class="black-text text-darken-1"><em>{{ recipe.category_name }}</em></h5>
-                <h5 class="black-text text-darken-1"><em>Allergens: {{ recipe.allergens }}</em></h5>
+                <h5 class="black-text text-darken-1"><em>Allergens: {% for allergen in recipe.allergens %} {{ allergen }} {% endfor %}</em></h5>
+                
                 <p class="grey-text author-text">By: <span class="grey-text text-darken-3">{{ recipe.created_by }}</span></p>
             </header>
         </div>

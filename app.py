@@ -47,8 +47,8 @@ def search():
     cuisines = list(mongo.db.recipes.find({"$text": {"$search": query}}))
 
     return render_template(
-        "categories.html", 
-        categories=categories, 
+        "categories.html",
+        categories=categories,
         recipes=recipes,
         cuisines=cuisines)
 
@@ -137,9 +137,9 @@ def recipe(recipe_id):
     It displays full recipe
     """
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    categories = mongo.db.categories.find().sort("category_name")
-    cuisines = mongo.db.cuisine.find().sort("cuisine_name", 1)
-    allergens = mongo.db.allergen.find().sort("allergen_name", 1)
+    categories = recipe['category_name']
+    cuisines = recipe['cuisine_name']
+    allergens = recipe['allergens']
 
     return render_template(
         "recipe.html",
@@ -172,10 +172,9 @@ def add_recipe():
             "created_by": session["user"],
             "cuisine_name": request.form.get("cuisine_name"),
             "image_url": request.form.get("image_url"),
-            "allergens": request.form.getlist("allergens"),
+            "allergens": request.form.getlist("allergen"),
             "ingredients": request.form.getlist("ingredients"),
             "instructions": request.form.getlist("instructions")
-            
         }
         
         mongo.db.recipes.insert_one(recipe)
@@ -193,6 +192,8 @@ def add_recipe():
         cuisines=cuisines, 
         allergens=allergens)
     
+
+
 
 @app.route("/edit_recipes/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
