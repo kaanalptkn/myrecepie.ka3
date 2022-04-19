@@ -1,4 +1,21 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# The Green Recipes
+
+## Backend Development Milestone Project 
+
+ADD PICTURE
+
+### Website presents Green Recipes as a online cookbook. Users will be able to find, add, delete, edit recipes content in easy and simple way.
+
+This project is for educational purposes and can not be used as a template for a business use. 
+
+This application uses Python on the back-end with the Flask web framework, and uses MongoDB for the database. It also uses the Materialize framework on the front-end such as HTML, CSS, JavaScript.
+
+
+Github: https://kaanalptkn.github.io/myrecepie.ka3/<br>
+Heroku App: https://git.heroku.com/flask-myrecipes-ka.git
+
+
+
 
 Welcome Kaan Alptakin,
 
