@@ -63,7 +63,9 @@ A hobbyist will visit the site to investigate a possible new recipe source. They
 A casual user will visit the site out of interest. They may browse a few recipes, search for some recipes based on a specific ingredient they might be using at the time. They may not register on the site to be able to add/edit recipes. The may visit the recipes page and casually browse the content.
 
 
+## Structure of the website
 
+The Green Recipe  is designed to be simple and user-friendly on all types of devices. On desktop, tablet, or mobile device there should be no difference for a user to have a great experience. All parts are designed to concentrate maximum user satisfaction. Users will get some interaction from the interface as links and buttons will have a hover effect. User will be able to add, remove, edit recipes.
 
 
 
