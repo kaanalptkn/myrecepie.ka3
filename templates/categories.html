@@ -27,14 +27,14 @@
 <div class="row center-align black-text background-decoration">
     {% for recipe in recipes %}
     <div class="col s12 m6 l4 offset-m1">
-        <div class="card large">
+        <div class="card-panel">
             {% if recipe.image_url|length %}
             <img src="{{ recipe.image_url }}" class="activator" alt="">
             {% endif %}
             <div class="card-content">
                 <h5>{{ recipe.recipe_name }}</h5>
                 <p>{{ recipe.cuisine_name }}</p>
-                <p>{{ recipe.created_by }}</p>
+                <p>By: {{ recipe.created_by }}</p>
                 <p>{{ recipe.category_name}}</p>
             </div>
             <div class="card-action">
