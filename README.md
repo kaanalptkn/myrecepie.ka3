@@ -73,7 +73,7 @@ The Green Recipe  is designed to be simple and user-friendly on all types of dev
 
 I used this website Balsamiq to create  wireframes.
 
-![Wireframes](../myrecepie.ka3/static/md_images/wireframes/wireframes.png)
+![Wireframes](/static/md_images/wireframes/wireframes.png)
 
 # Surface
 
@@ -93,5 +93,62 @@ Main colours used in a project:
 
 ### Images
 * I used images from [Pixel.com](https://www.pexels.com/)) and there are credited in [credits](#credits) section.
+
+[Back to Table of contents](#table-of-contents)
+
+# Fetures
+
+The website consists of 6 pages. Six are accessible from a navigation menu.
+
+The website has below features:
+
+## Navigation bar
+
+* #### Navigation bar is visible on the top of each website. It is responsive and will adapt to mobile devices by a change into a burger menu.
+
+* Navigation scheme:
+
+ * On left side there is a logo. It can be used as navigation link to the main page.
+ * On right side there are four links or nav menu. It contains:
+   * All Recipes
+   * My recipes
+   * Add Recipe
+   * Log in
+   * Log out
+   * Sign in
+
+## Add Recipes
+
+* Users can add own recipes here. Also they can edit, remove their own recipes. 
+
+## Footer
+
+* Footer is consistent on all pages. It has contact details, copyright,  and social links, and my github page. Each link will open in a separate tab in a browser.
+
+## All Recipes
+
+* In this section user can see all recipes with indvidual profiles; there's information about recipe category, created by, recipe name and cuisine information. On the bottom view section, when user click to view section they will see full recipe. If user logged in and they have a own recipes on this section they will see edit/delete button side of view button.
+
+
+## Log in
+
+* If user already signed in before, they can login with username and password. Username is more than five character, and pasword as well. If the user first time coming to our website, there's a link on the bottom "New here? Sign Up! 
+
+## Sign up
+
+* This section provides to user sign up information. If user first time in our webpage and they woudl like to add their own recipes and edit/remove they need sign up. 
+
+## My Recipes
+
+* When user loged in the page direct them to the my recipe page. My recipe page collecting users own recipes. They will see edit/delete button side of view button, with view button they can see all recipe and also they can edit or remove their own recipes.
+
+
+## Add recipe
+
+* After user logged in, they will see add recipe option on nav bar. From add recipe page user will be able add new recipe. Ther's a recipe name all recipes need name, image all recipes need image adress if you dont have just leave blank, allergens section keeping in diffrent allergens, such as nuts, fish, milk, ingredinets section user can add ingredinets and quantity, instructions section is methods for cooking.
+
+## Log out
+
+* In this section user can log out anytime, when you log out the page will you direct to all recipes page automatically.
 
 [Back to Table of contents](#table-of-contents)
