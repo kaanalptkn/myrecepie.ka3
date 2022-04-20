@@ -27,7 +27,7 @@ nav .brand-logo,
 }
 
 .green.lighten-2 {
-    color: black;
+    color: rgb(0, 0, 0);
 }
 
 ul:not(.browser-default)>li {
@@ -60,7 +60,26 @@ img {
     width: 220px;
 }
 
-@media (max-width: 768px) {
+@media only screen and (max-width: 992px) {
     body {
       width: 100%;
+    }
+    nav .brand-logo {
+        left: 30%;
+        font-size: 22px;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .button {
+        border-radius: 15px;
+        font-size: 11px;
+        block-size: 30px;
+    }
+    
+    img {
+        margin: 0;
+    }
     }

@@ -42,7 +42,7 @@ To open live project click [here](https://flask-myrecipes-ka.herokuapp.com/)<br>
 - [Credits](#Credits)
 - [Screenhots](#Screenhots)
 
-[UX](#ux)
+# UX
 
 ## Website owner business goals
 
@@ -152,3 +152,4 @@ The website has below features:
 * In this section user can log out anytime, when you log out the page will you direct to all recipes page automatically.
 
 [Back to Table of contents](#table-of-contents)
+

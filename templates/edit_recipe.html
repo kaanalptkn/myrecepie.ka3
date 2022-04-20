@@ -63,7 +63,11 @@
                             <div class="input-field col s6 m3 mt-0 mb-0 height-40 allergen">
                                 <p>
                                     <label for="{{ allergen.allergen_name }}">
+                                        {% if allergen.allergen_name == recipe.allergens %}
+                                        <input type="checkbox" class="filled-in" id="{{ allergen.allergen_name }}" name="allergens" value="{{ allergen.allergen_name }}" checked="checked">
+                                        {% else %}
                                         <input type="checkbox" class="filled-in" id="{{ allergen.allergen_name }}" name="allergens" value="{{ allergen.allergen_name }}">
+                                        {% endif %}
                                         <span>{{ allergen.allergen_name }}</span>
                                     </label>
                                 </p>
@@ -82,7 +86,9 @@
                                 <div class="container">
                                     <div class="ingredients" id="ingredients">
                                         <div class="ingredients  ingredinet col l12">
+                                            {% if ingredient in recipe.ingredients%}    
                                             <input  id="ingredients" type="text"  name="ingredients" class="ingredients" required>
+                                            {% endif %}
                                             <label for="ingredients">Quantity and Ingredients</label>
                                         </div>
                                     </div>
@@ -109,7 +115,9 @@
                             <div class="row">
                                 <div class="container">
                                     <div class="col l12 instructions step" id="instructions">
+                                        {% if step in recipe.instructions} 
                                         <input id="instructions" type="text"  name="instructions" class="instructions" required>
+                                        {% endif %}
                                         <label for="instructions">Instruction</label>
                                     </div>
                                 </div>

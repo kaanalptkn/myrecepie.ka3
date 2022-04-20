@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h2 class="center-align">All Recipes</h2>
+<h2 class="center-align home">All Recipes</h2>
 
 <div class="container col s12 m10 offset-m1 grey lighten-3 content-container">
     <div class="row">
@@ -13,11 +13,11 @@
                     <label for="query">Search Recipe</label>
                 </div>
                 <div class="col s6 m4">
-                    <button class="btn waves-effect waves-light green lighten-2 submit-btn mt-20 button" type="submit" id="recipe-search-btn">search</button>
+                    <button class="btn waves-effect waves-light green lighten-2 mt-20 button" type="submit" id="recipe-search-btn">search</button>
                 </div>
             </div>
             <div class="col s6 m4">
-                <a href="{{ url_for('get_categories') }}"  class=" green lighten-2 btn text-shadow button">Reset</a>
+                <a href="{{ url_for('get_categories') }}"  class=" green lighten-2 text-shadow button">Reset</a>
             </div>
         </form>  
     </div>
@@ -38,7 +38,7 @@
                 <p>{{ recipe.category_name}}</p>
             </div>
             <div class="card-action">
-                 <a href="{{ url_for('recipe', recipe_id=recipe._id) }}" class="waves-effect waves-light black-text btn-small m-4 button">Full Recipe</a>
+                 <a href="{{ url_for('recipe', recipe_id=recipe._id) }}" class="waves-effect waves-light black-text btn-small m-4 button">View</a>
                     {% if session.user|lower == recipe.created_by|lower %}
                     <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}" class="btn-small green lighten-2 accent-4 button">Edit</a>
                     <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}" class="btn-small black-text red lighten-1 accent-4 button">Delete</a>
