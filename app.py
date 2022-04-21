@@ -74,7 +74,8 @@ def signup():
             "username": request.form.get("username").lower(),
             "email": request.form.get("email").lower(),
             "password": pwhash,
-            "password_reconfirm": check_password_hash(pwhash, request.form.get("password_reconfirm"))
+            "password_reconfirm": check_password_hash(pwhash, request.form.get(
+                "password_reconfirm"))
         }
 
         mongo.db.users.insert_one(register)
@@ -95,7 +96,7 @@ def login():
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
-                flash("Welcome " + session["user"].format(request.form.get("usernme")))
+                flash("Welcome " + session["user"].format(request.form.get("username")))
                 return redirect(
                     url_for("my_recipes", username=session["user"]))
             else:
@@ -126,9 +127,6 @@ def my_recipes(username):
             "my_recipes.html",       
             username=username,   
             recipes=recipes)
-
-
-
 
 
 @app.route("/recipe/<recipe_id>")
@@ -191,8 +189,6 @@ def add_recipe():
         categories=categories,
         cuisines=cuisines, 
         allergens=allergens)
-    
-
 
 
 @app.route("/edit_recipes/<recipe_id>", methods=["GET", "POST"])
@@ -226,14 +222,18 @@ def edit_recipe(recipe_id):
 
         categories = mongo.db.categories.find().sort("category_name")
         cuisines = mongo.db.cuisine.find().sort("cuisine_name", 1)
-        allergens = mongo.db.allergen.find().sort("allergen_name", 1)
+        allergens = list(mongo.db.allergen.find().sort("allergen_name", 1))
+        ingredients = list(mongo.db.recipe.find().sort("ingredients"))
+        instructions = list(mongo.db.recipe.find().sort("instructions"))
 
         return render_template(
             "edit_recipe.html",
             recipe=recipe,
             categories=categories,
             cuisines=cuisines, 
-            allergens=allergens)
+            allergens=allergens,
+            ingredients=ingredients,
+            instructions=instructions)
         
 
 @app.route("/delete_recipe/<recipe_id>")
@@ -256,4 +256,4 @@ def delete_recipe(recipe_id):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=False)
+            debug=True)
