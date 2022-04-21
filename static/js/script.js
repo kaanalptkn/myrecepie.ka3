@@ -3,6 +3,9 @@ $(document).ready(function(){
     $('select').formSelect();
   });
 
+
+  //This section re-confirming passwords if they are match
+
   $('#password, #password_reconfirm').on('keyup', function () {
     if ($('#password').val() == $('#password_reconfirm').val()) {
       $('#message').html('Matching').css('color', 'green');
@@ -10,6 +13,7 @@ $(document).ready(function(){
       $('#message').html('Not Matching').css('color', 'red');
   });
 
+//This section for add and delte ingredients
 
 var ingredients = document.getElementById('ingredients');
 var add_btn_ing = document.getElementById('add-btn-ing');
@@ -22,14 +26,17 @@ add_btn_ing.onclick = function(){
   newField.setAttribute('class','ingredients');
   newField.setAttribute('placeholder','Add more ingredients and quantity');
   ingredients.appendChild(newField);
-}
+};
 
 btn_remove.onclick = function(){
   var input_class = ingredients.getElementsByClassName('ingredients');
   if(input_class.length > 1) {
     ingredients.removeChild(input_class[(input_class.length) - 1]);
   }
-}
+};
+
+
+// This section for add and remove instructions
 
 var instructions = document.getElementById('instructions');
 var add_btn_ins = document.getElementById('add-btn-ins');
@@ -42,13 +49,13 @@ add_btn_ins.onclick = function(){
   newField.setAttribute('class','instructions');
   newField.setAttribute('placeholder','Add more instruction');
   instructions.appendChild(newField);
-}
+};
 
 btn_remove_ins.onclick = function(){
   var input_class = instructions.getElementsByClassName('instructions');
   if(input_class.length > 1) {
     instructions.removeChild(input_class[(input_class.length) - 1]);
   }
-}
+};
 
     

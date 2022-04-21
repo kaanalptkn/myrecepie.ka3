@@ -5,7 +5,7 @@
         <h3>Welcome to Green Recipes</h3>
         <p><strong>Sign up for create own recipes, save, edit, delete</strong></p>
     </header>
-
+    <!--Login section-->
     <h3 class="center-align">Log In</h3>
     <div class="row">
         <form class="col s12 m8 offset-m2 green lighten-4" method="POST" action="{{ url_for('login') }}">
@@ -36,9 +36,10 @@
         </form>
     </div>
     <div class="row">
+        <!--If user hasn't sign up yet this page direct them to sign up page-->
         <div class="col s12">
             <p class="center-align">
-                New here? <a href="{{ url_for('login') }}" class="light-black-text text-darken-4">Sign up!</a>
+                New here? <a href="{{ url_for('signup') }}" class="light-black-text text-darken-4">Sign up!</a>
             </p>
         </div>
 

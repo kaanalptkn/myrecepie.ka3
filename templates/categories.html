@@ -2,7 +2,7 @@
 {% block content %}
 
 <h2 class="center-align home">All Recipes</h2>
-
+<!--Search, reset buttons-->
 <div class="container col s12 m10 offset-m1 grey lighten-3 content-container">
     <div class="row">
         <form action="{{ url_for('search') }}" method="POST" class="col s12 green lighten-4">
@@ -17,12 +17,12 @@
                 </div>
             </div>
             <div class="col s6 m4">
-                <a href="{{ url_for('get_categories') }}"  class=" green lighten-2 text-shadow button">Reset</a>
+                <a href="{{ url_for('get_categories') }}"  class=" btn green lighten-2 text-shadow button">Reset</a>
             </div>
         </form>  
     </div>
 </div>
-
+<!--Recipe lists-->
 {% if recipes|length > 0 %}
 <div class="row center-align black-text background-decoration">
     {% for recipe in recipes %}
@@ -49,7 +49,8 @@
     {% endfor %}
 </div> 
 {% else %}
-    <h3 class="center-align black-text">No Result Found <i class="far fa-sad-cry"></i></h3>
+<!--This section if is there any search hasn't show on search bar user will see this message-->
+    <h5 class="center-align black-text">No Result Found <i class="far fa-sad-cry"></i></h5>
 {% endif %}
 
 {% endblock %}

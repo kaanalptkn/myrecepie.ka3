@@ -2,7 +2,8 @@
 {% block content %}
 
 <div class="container col s12 m10 offset-m1 green lighten-4 content-container mt-40 center-align" id="full_recipe">
-   
+   <!--This section for full of recipe, whne users create the recipe below section will be appear, such as; 
+    recipe name, category, cuisine, allergens, created by user, ingredinets, instructions-->
    <div class="row">
         <div class="col s12 m6">
             <header class="header-text center-align black-text text-darken-4">
@@ -47,6 +48,7 @@
         </div>
    </div>
    <div class="center-align mb-20 mt-40">
+       <!--In this section user can edit, remove their recipes or they can back to main page-->
     <div class="row">
         <a href="{{ url_for('get_categories') }}" class="waves-effect waves-light btn-small darken-3">Back</a>
         {% if session.user|lower == recipe.created_by|lower %}

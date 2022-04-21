@@ -1,6 +1,6 @@
 import os
 from flask import (
-    Flask, flash, render_template, 
+    Flask, flash, render_template,
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -30,11 +30,11 @@ def get_categories():
     cuisines = list(mongo.db.cuisine.find())
 
     return render_template(
-        "categories.html", 
-        categories=categories, 
+        "categories.html",
+        categories=categories,
         recipes=recipes,
         cuisines=cuisines)
-        
+
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
@@ -96,14 +96,14 @@ def login():
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
-                flash("Welcome " + session["user"].format(request.form.get("username")))
+                flash("Welcome " + session["user"].format(request.form.get(
+                    "username")))
                 return redirect(
                     url_for("my_recipes", username=session["user"]))
             else:
                 # invaild password match
                 flash("Incorrect Username and/or Password")
                 return redirect(url_for("login"))
-
         else:
             # username doesn't exist
             flash("Incorrect Username and/or Password")
@@ -124,8 +124,8 @@ def my_recipes(username):
         flash("You were not supposed to be here!")
         return redirect(url_for("get_categories"))
     return render_template(
-            "my_recipes.html",       
-            username=username,   
+            "my_recipes.html",
+            username=username,
             recipes=recipes)
 
 
@@ -141,11 +141,11 @@ def recipe(recipe_id):
 
     return render_template(
         "recipe.html",
-        recipe=recipe, 
-        categories=categories, 
-        cuisine=cuisines, 
+        recipe=recipe,
+        categories=categories,
+        cuisine=cuisines,
         allergens=allergens)
-    
+
 
 @app.route("/logout")
 def logout():
@@ -174,7 +174,7 @@ def add_recipe():
             "ingredients": request.form.getlist("ingredients"),
             "instructions": request.form.getlist("instructions")
         }
-        
+
         mongo.db.recipes.insert_one(recipe)
         flash("Recipe succesfully created!")
         return redirect(url_for("get_categories"))
@@ -184,10 +184,10 @@ def add_recipe():
     allergens = mongo.db.allergen.find().sort("allergen_name", 1)
 
     return render_template(
-        "add_recipes.html", 
+        "add_recipes.html",
         recipes=recipes,
         categories=categories,
-        cuisines=cuisines, 
+        cuisines=cuisines,
         allergens=allergens)
 
 
@@ -201,7 +201,7 @@ def edit_recipe(recipe_id):
         recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
         if recipe["created_by"] == user:
             if request.method == "POST":
-                update = {'$set': { 
+                update = {'$set': {
                     "recipe_name": request.form.get("recipe_name"),
                     "category_name": request.form.get("category_name"),
                     "created_by": session["user"],
@@ -230,11 +230,11 @@ def edit_recipe(recipe_id):
             "edit_recipe.html",
             recipe=recipe,
             categories=categories,
-            cuisines=cuisines, 
+            cuisines=cuisines,
             allergens=allergens,
             ingredients=ingredients,
             instructions=instructions)
-        
+
 
 @app.route("/delete_recipe/<recipe_id>")
 def delete_recipe(recipe_id):
@@ -256,4 +256,4 @@ def delete_recipe(recipe_id):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=False)

@@ -1,3 +1,5 @@
+/*Body____________________________________________________________*/
+
 .text-shadow {
     text-shadow: 3px 3px 3px rgba(217, 211, 211, 0.5);
 }
@@ -40,6 +42,7 @@ ul:not(.browser-default)>li {
 
 .button {
     border-radius: 15px;
+    margin: 10px;
 }
 
 .add_recipe-background {
@@ -49,7 +52,7 @@ ul:not(.browser-default)>li {
 .card-panel {
     background-color: #c8e6c9;
 }
-
+/*Img section--------------------------------------------*/
 img {
     max-width: 100%;
     max-height: 100%;
@@ -59,6 +62,11 @@ img {
     height: 220px;
     width: 220px;
 }
+
+.social-media {
+    letter-spacing: 10px;
+}
+/*Media Query-------------------------------------------*/
 
 @media only screen and (max-width: 992px) {
     body {
@@ -75,8 +83,9 @@ img {
 
     .button {
         border-radius: 15px;
-        font-size: 11px;
+        font-size: 10px;
         block-size: 30px;
+        margin: 10px;
     }
     
     img {

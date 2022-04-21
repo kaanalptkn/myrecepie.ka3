@@ -3,6 +3,7 @@
 
 <div class="container">
     <div class="row">
+        <!--User's page opening with user's name-->
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
@@ -11,6 +12,7 @@
                 </div>
             </div>
         </div>
+        <!--Users own recipes, they can see recipe name, cuisine, category-->
         <div class="row center-align background-decoration">
             {% for recipe in recipes %}
             <div class="col s12 m6 l4 offset-m1">
@@ -26,6 +28,7 @@
                         <div class="row">
                             <a class="btn halfway-fab waves-effect waves-light red right"><i class="far fa-thumbs-up"></i></a>
                         </div>
+                        <!--User can click this button and see full of their ow recipes-->
                         <div class="row">
                             <h5><a href="{{ url_for('recipe', recipe_id=recipe._id) }}" class="btn-small light-blue black-text button">View</a></h5>
                         </div>
@@ -41,6 +44,7 @@
                         {% endfor %}
                            </ul>
                     </div>
+                    <!--User can edit or delete their own recipes-->
                     {% if session.user|lower == recipe.created_by|lower %}
                     <div class="row">
                         <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}" class="btn-small green lighten-2 black-text button">Edit</a>
