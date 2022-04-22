@@ -201,7 +201,9 @@ def edit_recipe(recipe_id):
         recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
         if recipe["created_by"] == user:
             if request.method == "POST":
-                update = {'$set': {
+                print('allergens')
+                print(request.form.getlist("allergens"))
+                update = {
                     "recipe_name": request.form.get("recipe_name"),
                     "category_name": request.form.get("category_name"),
                     "created_by": session["user"],
@@ -210,14 +212,11 @@ def edit_recipe(recipe_id):
                     "allergens": request.form.getlist("allergens"),
                     "ingredients": request.form.getlist("ingredients"),
                     "instructions": request.form.getlist("instructions")
-                }}
-                mongo.db.recipes.update_one(
-                    {"_id": ObjectId(recipe_id)}, update,
-                    upsert=True)
+                }
+                mongo.db.recipes.replace_one(
+                    {"_id": ObjectId(recipe_id)}, update)
                 flash("Recipe Updated Succesfully")
                 return redirect(url_for("get_categories"))
-                
-
         else:
             flash("You need to login first for editing")
             return redirect(url_for("login.html"))

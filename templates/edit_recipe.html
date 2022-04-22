@@ -64,7 +64,7 @@
                             <p>
                                 <label for="{{ allergen.allergen_name }}">
                                     {% if allergen.allergen_name in recipe.allergens %}
-                                        <input type="checkbox" class="filled-in" id="{{ allergen.allergen_name }}" name="allergen" value="{{ allergen.allergen_name }}" checked="checked">
+                                        <input type="checkbox" class="filled-in" id="{{ allergen.allergen_name }}" name="allergens" value="{{ allergen.allergen_name }}" checked="checked">
                                         {% else %}
                                         <input type="checkbox" class="filled-in" id="{{ allergen.allergen_name }}" name="allergens" value="{{ allergen.allergen_name }}">
                                         {% endif %}
