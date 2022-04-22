@@ -52,6 +52,12 @@ ul:not(.browser-default)>li {
 .card-panel {
     background-color: #c8e6c9;
 }
+
+.col .row {
+    padding: 20px;
+}
+
+
 /*Img section--------------------------------------------*/
 img {
     max-width: 100%;
