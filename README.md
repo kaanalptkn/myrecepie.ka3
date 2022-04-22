@@ -2,7 +2,7 @@
 
 ## Backend Development Milestone Project 
 
-![iamresponsive](../myrecepie.ka3/static/md_images/mockup.png)
+![iamresponsive](/static/md_images/mockup.png)
 
 ### Website presents Green Recipes as a online cookbook. Users will be able to find, add, delete, edit recipes content in easy and simple way.
 
@@ -425,35 +425,35 @@ in setting up a database to writing Python with Flask and the Jinja Template lan
 
 #### Image
 
-##### [Pixel.com](https://www.pexels.com/)
+##### I used [Pixel.com](https://www.pexels.com/photo/green-and-purple-kale-in-white-surface-5755640/) for background image.
 
-* [Background image](https://www.pexels.com/photo/green-and-purple-kale-in-white-surface-5755640/)
+
 
 # Screenhots
 
 - Home Page
 
-![Home page](../myrecepie.ka3/static/md_images/screenshots/A.png)
+![Home page](/static/md_images/screenshots/A.png)
 
 - Log in Page
 
-![Log In](../myrecepie.ka3/static/md_images/screenshots/B.png)
+![Log In](/static/md_images/screenshots/B.png)
 
 - Add Recipe
 
-![Add Recipe](../myrecepie.ka3/static/md_images/screenshots/C.png)
+![Add Recipe](/md_images/screenshots/C.png)
 
 - Sign Up
 
-![Sign up](../myrecepie.ka3/static/md_images/screenshots/D.png)
+![Sign up](/static/md_images/screenshots/D.png)
 
 - Home page (mobile view)
 
-![Mobile home](../myrecepie.ka3/static/md_images/screenshots/E.png)
+![Mobile home](/static/md_images/screenshots/E.png)
 
 - Log In (mobile)
 
-![Login-mobile](../myrecepie.ka3/static/md_images/screenshots/F.png)
+![Login-mobile](/static/md_images/screenshots/F.png)
 
 
 [Back to Table of contents](#table-of-contents)
