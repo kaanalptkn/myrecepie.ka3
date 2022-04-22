@@ -212,9 +212,11 @@ def edit_recipe(recipe_id):
                     "instructions": request.form.getlist("instructions")
                 }}
                 mongo.db.recipes.update_one(
-                    {"_id": ObjectId(recipe_id)}, update)
+                    {"_id": ObjectId(recipe_id)}, update,
+                    upsert=True)
                 flash("Recipe Updated Succesfully")
                 return redirect(url_for("get_categories"))
+                
 
         else:
             flash("You need to login first for editing")
@@ -222,7 +224,7 @@ def edit_recipe(recipe_id):
 
         categories = mongo.db.categories.find().sort("category_name")
         cuisines = mongo.db.cuisine.find().sort("cuisine_name", 1)
-        allergens = list(mongo.db.allergen.find().sort("allergen_name", 1))
+        allergens = list(mongo.db.allergen.find().sort("allergen_name"))
         ingredients = list(mongo.db.recipe.find().sort("ingredients"))
         instructions = list(mongo.db.recipe.find().sort("instructions"))
 
@@ -256,4 +258,4 @@ def delete_recipe(recipe_id):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=False)
+            debug=True)

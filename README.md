@@ -441,7 +441,7 @@ in setting up a database to writing Python with Flask and the Jinja Template lan
 
 - Add Recipe
 
-![Add Recipe](/md_images/screenshots/C.png)
+![Add Recipe](/static/md_images/screenshots/C.png)
 
 - Sign Up
 
