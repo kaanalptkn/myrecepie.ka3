@@ -224,7 +224,7 @@ Galaxy S21.
 
 - Bugs 1
 
-![bug1](../myrecepie.ka3/static/testing/bug-1-allergen%20isn't%20appear.png)
+![bug1](/static/testing/bug-1-allergen%20isn't%20appear.png)
 
 
 When we clicked on the edit page, the allergen part was not saved. 
@@ -239,7 +239,7 @@ And updated Allergens: {% for allergen in recipe.allergens %} {{ allergen }} {% 
 
 Bugs 2
 
-![Bug2](../myrecepie.ka3/static/testing/Bug2-ingredinets-isnt-save-when-edit.png)
+![Bug2](/static/testing/Bug2-ingredinets-isnt-save-when-edit.png)
 
 * The instruction and ingredients sections on the edit page were not saved. When you click on the Edit button, these parts were reset automatically.
 I make sure I am looping over the correct variables in my template to display them. I wasn't sure if the variables I am using in my template are correct. I tested  it by displaying the variable in a large heading to see if it contains any data. 
@@ -252,11 +252,11 @@ So it was displaying the instructions, I just added to put '{{ instruction }}' i
 
 #### Desktop view 
 
-![Desktop](../myrecepie.ka3/static/testing/performance-desktop.png)
+![Desktop](/static/testing/performance-desktop.png)
 
 #### Mobile view
 
-![Mobile](../myrecepie.ka3/static/testing/performance-lighthouse.png)
+![Mobile](/static/testing/performance-lighthouse.png)
 
 
 ## Code validation
