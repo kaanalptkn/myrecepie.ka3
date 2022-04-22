@@ -456,7 +456,5 @@ in setting up a database to writing Python with Flask and the Jinja Template lan
 ![Login-mobile](../myrecepie.ka3/static/md_images/screenshots/F.png)
 
 
-
-
 [Back to Table of contents](#table-of-contents)
 
