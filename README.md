@@ -2,7 +2,7 @@
 
 ## Backend Development Milestone Project 
 
-ADD PICTURE
+![iamresponsive](../myrecepie.ka3/static/md_images/mockup.png)
 
 ### Website presents Green Recipes as a online cookbook. Users will be able to find, add, delete, edit recipes content in easy and simple way.
 
@@ -222,7 +222,42 @@ Galaxy S21.
 
 ## Issues found during site development
 
-ADD THIS SECTION LATER ADD BUGS IMAGES
+- Bugs 1
+
+![bug1](../myrecepie.ka3/static/testing/bug-1-allergen%20isn't%20appear.png)
+
+
+When we clicked on the edit page, the allergen part was not saved. 
+
+* I had to change the name of the checkboxes to allergen, then I can get the list from that. Then I was working on the rendering. I added below section on my app.py file:
+  -   recipe = mongo.db.recipes.find_one({"_id":     ObjectId(recipe_id)})
+    categories = recipe['category_name']
+    cuisines = recipe['cuisine_name']
+    allergens = recipe['allergens']
+* I render it, but I needed to loop over the allergens as it is just was printing it as a list or cursor object.
+And updated Allergens: {% for allergen in recipe.allergens %} {{ allergen }} {% endfor %} jinja on the recipe page, and issue was solved.
+
+Bugs 2
+
+![Bug2](../myrecepie.ka3/static/testing/Bug2-ingredinets-isnt-save-when-edit.png)
+
+* The instruction and ingredients sections on the edit page were not saved. When you click on the Edit button, these parts were reset automatically.
+I make sure I am looping over the correct variables in my template to display them. I wasn't sure if the variables I am using in my template are correct. I tested  it by displaying the variable in a large heading to see if it contains any data. 
+  - I was trying to loop over 'ingredinets', so I add
+"h1 style="color:red;"> {{ ingredinets }}"
+to see if that variable exists, which is it was. 
+So it was displaying the instructions, I just added to put '{{ instruction }}' in value of the input in your loop, and issue sorted.
+
+### Performance testing 
+
+#### Desktop view 
+
+![Desktop](../myrecepie.ka3/static/testing/performance-desktop.png)
+
+#### Mobile view
+
+![Mobile](../myrecepie.ka3/static/testing/performance-lighthouse.png)
+
 
 ## Code validation
 
@@ -356,6 +391,24 @@ This tells Heroku how to run our project:
 
 5. Go to deployment on heroku and fill in your variables, you no longer need to create a requirements.txt file and Procfile.
 
+6.  Deploying your app to heroku
+
+* Login to heroku and enter your details.
+    - command: heroku login -i
+
+* 2. Get your app name from heroku.
+    - command: heroku apps
+
+* 3. Set the heroku remote. (Replace <app_name> with your actual app name)
+    - command: ﻿heroku git:remote -a <app_name>
+
+* 4. Add, commit and push to github
+    - command: git add . && git commit -m "Deploy to Heroku via CLI"
+
+5. Push to both github and heroku
+    - command: git push origin main
+    - command: git push heroku main
+
 
 # Credits
 
@@ -364,7 +417,7 @@ This tells Heroku how to run our project:
 1. The code in this project mainly comes from Code Institute's Task Manager project and used as a main reference while creating this project
 in setting up a database to writing Python with Flask and the Jinja Template language.
 
-2. General content ![BBC Food](https://www.bbc.co.uk/food/diets/vegan)
+2. General content [BBC Food](https://www.bbc.co.uk/food/diets/vegan)
 
 3. I created my own css file and used some Materialize file.
 
@@ -374,11 +427,36 @@ in setting up a database to writing Python with Flask and the Jinja Template lan
 
 ##### [Pixel.com](https://www.pexels.com/)
 
-* ![Background image](https://www.pexels.com/photo/green-and-purple-kale-in-white-surface-5755640/)
+* [Background image](https://www.pexels.com/photo/green-and-purple-kale-in-white-surface-5755640/)
 
 # Screenhots
 
-ADD  Screenhots
+- Home Page
+
+![Home page](../myrecepie.ka3/static/md_images/screenshots/A.png)
+
+- Log in Page
+
+![Log In](../myrecepie.ka3/static/md_images/screenshots/B.png)
+
+- Add Recipe
+
+![Add Recipe](../myrecepie.ka3/static/md_images/screenshots/C.png)
+
+- Sign Up
+
+![Sign up](../myrecepie.ka3/static/md_images/screenshots/D.png)
+
+- Home page (mobile view)
+
+![Mobile home](../myrecepie.ka3/static/md_images/screenshots/E.png)
+
+- Log In (mobile)
+
+![Login-mobile](../myrecepie.ka3/static/md_images/screenshots/F.png)
+
+
+
 
 [Back to Table of contents](#table-of-contents)
 

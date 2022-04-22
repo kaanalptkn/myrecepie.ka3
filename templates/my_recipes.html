@@ -25,24 +25,10 @@
                     <div class="card-content">
                         <h5 class="">{{ recipe.recipe_name.capitalize() }}</h5>
                         <p class="card-title">{{ recipe.category_name }}</p>
-                        <div class="row">
-                            <a class="btn halfway-fab waves-effect waves-light red right"><i class="far fa-thumbs-up"></i></a>
-                        </div>
                         <!--User can click this button and see full of their ow recipes-->
                         <div class="row">
                             <h5><a href="{{ url_for('recipe', recipe_id=recipe._id) }}" class="btn-small light-blue black-text button">View</a></h5>
                         </div>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">{{ recipe.recipe_name.capitalize() }}<i
-                                class="far fa-times-circle right"></i></span>
-                           <ul>
-                            {% for ingredient in recipe.ingredients %}
-                            <li>
-                                {{ ingredient }}
-                            </li>
-                        {% endfor %}
-                           </ul>
                     </div>
                     <!--User can edit or delete their own recipes-->
                     {% if session.user|lower == recipe.created_by|lower %}
