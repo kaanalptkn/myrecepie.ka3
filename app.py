@@ -80,7 +80,7 @@ def signup():
 
         mongo.db.users.insert_one(register)
 
-        session["user"] = request.form.get("username").lower(),
+        session["user"] = request.form.get("username").lower()
         flash("You have successfully signed up")
         return redirect(url_for("get_categories"))
 
@@ -116,7 +116,7 @@ def my_recipes(username):
     """
     This function for user's username from db
     """
-    username = session["user"].capitalize()
+    username = session["user"]
     if username == session["user"]:
         recipes = list(mongo.db.recipes.find(
             {"created_by": session["user"]}))
