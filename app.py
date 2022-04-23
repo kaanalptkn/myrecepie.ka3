@@ -116,7 +116,7 @@ def my_recipes(username):
     """
     This function for user's username from db
     """
-    username = session["user"]
+    username = session["user"].capitalize()
     if username == session["user"]:
         recipes = list(mongo.db.recipes.find(
             {"created_by": session["user"]}))
