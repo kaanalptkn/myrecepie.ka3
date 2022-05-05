@@ -90,7 +90,7 @@ img {
     .input-field .prefix ~ input {
         width: calc(100% - 0rem);
         margin-left: 4rem;
-    } 
+    }
 
     h2 {
         font-size: 2rem;
