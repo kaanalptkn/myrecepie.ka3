@@ -83,6 +83,15 @@ img {
         font-size: 22px;
     }
 
+    button#recipe-search-btn {
+        margin-left: 3rem;
+    }
+
+    .input-field .prefix ~ input {
+        width: calc(100% - 0rem);
+        margin-left: 4rem;
+    } 
+
     h2 {
         font-size: 2rem;
     }
