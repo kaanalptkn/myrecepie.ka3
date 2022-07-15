@@ -11,7 +11,7 @@ This project is for educational purposes and can not be used as a template for a
 This application uses Python on the back-end with the Flask web framework, and uses MongoDB for the database. It also uses the Materialize framework on the front-end such as HTML, CSS, JavaScript.
 
 
-To open live project click [here](https://kaan707-tiny-paws.herokuapp.com/)<br>
+To open live project click [here](https://flask-myrecipes-ka.herokuapp.com/)<br>
 
 
 # Table of Contents
@@ -46,7 +46,7 @@ To open live project click [here](https://kaan707-tiny-paws.herokuapp.com/)<br>
 
 ## Website owner business goals
 
-This page presents all the recipe details to its owner. The owner can update, edit, delte  any recipe details and resubmit the recipe. 
+This page presents all the recipe details to its owner. The owner could update, edit, delte  any recipe details and resubmit the recipe. 
 The data is passed from the form to python. The page and its functionality were created using the Materilaze, Framework, JQuery, 
 Python and The Flasks, Heroku, MongoDB.
 
