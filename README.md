@@ -11,7 +11,7 @@ This project is for educational purposes and can not be used as a template for a
 This application uses Python on the back-end with the Flask web framework, and uses MongoDB for the database. It also uses the Materialize framework on the front-end such as HTML, CSS, JavaScript.
 
 
-To open live project click [here](https://flask-myrecipes-ka.herokuapp.com/)<br>
+To open live project click [here](https://kaan707-tiny-paws.herokuapp.com/)<br>
 
 
 # Table of Contents
@@ -76,8 +76,7 @@ browse the content.
 ## Structure of the website
 
 The Green Recipe  is designed to be simple and user-friendly on all types of devices. On desktop, tablet, or mobile device there should be no 
-difference for a user to have a great experience. All parts are designed to concentrate maximum user satisfaction. Users will get some interaction 
-from the interface as links and buttons will have a hover effect. User will be able to add, remove, edit recipes.
+difference for a user to have a great experience. All parts are designed to concentrate maximum user satisfaction. Users will get some interaction from the interface as links and buttons will have a hover effect. User will be able to add, remove, edit recipes.
 
 ## Wireframes
 
